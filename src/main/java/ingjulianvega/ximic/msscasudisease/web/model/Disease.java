@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Builder
 public class Disease implements Serializable {
 
-    static final long serialVersionUID = 9198883824898848986L;
+    static final long serialVersionUID = -7309482740220635006L;
 
     private String name;
 

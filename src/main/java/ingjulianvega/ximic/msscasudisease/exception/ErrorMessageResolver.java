@@ -3,8 +3,8 @@ package ingjulianvega.ximic.msscasudisease.exception;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ingjulianvega.ximic.msscasugender.configuration.GenderParameters;
-import ingjulianvega.ximic.msscasugender.web.model.ApiError;
+import ingjulianvega.ximic.msscasudisease.configuration.DiseaseParameters;
+import ingjulianvega.ximic.msscasudisease.web.model.ApiError;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -34,7 +34,7 @@ public class ErrorMessageResolver {
 
     private final ObjectMapper mapper;
 
-    private final GenderParameters genderParameters;
+    private final DiseaseParameters diseseParameters;
 
 
     public ApiError resolveApiException(final String response) {
@@ -62,13 +62,13 @@ public class ErrorMessageResolver {
             return getApiGenericError();
         }
         final String[] errorArr = property.split("\\|");
-        return ApiError.builder().code(genderParameters.getPrefix() + errorArr[0]).description(errorArr[1]).build();
+        return ApiError.builder().code(diseseParameters.getPrefix() + errorArr[0]).description(errorArr[1]).build();
     }
 
     private ApiError getApiGenericError() {
         final String message = "UNKNOWN ERROR";
         return ApiError.builder()
-                .code(genderParameters.getPrefix() + "500:199")
+                .code(diseseParameters.getPrefix() + "500:199")
                 .description(message)
                 .build();
     }

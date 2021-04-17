@@ -14,7 +14,7 @@ import java.util.ArrayList;
 @Builder
 public class DiseaseList implements Serializable {
 
-    static final long serialVersionUID = -5375865056086419110L;
+    static final long serialVersionUID = -8780904245399201053L;
 
     public ArrayList<DiseaseDto> genderList;
 }

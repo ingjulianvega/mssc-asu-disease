@@ -5,8 +5,8 @@
         <jsr107:defaults enable-management="true" enable-statistics="true"/>
     </service>
 
-    <cache alias="genderCache" uses-template="config-cache"/>
-    <cache alias="genderListCache" uses-template="config-cache"/>
+    <cache alias="diseaseCache" uses-template="config-cache"/>
+    <cache alias="diseaseListCache" uses-template="config-cache"/>
 
     <cache-template name="config-cache">
         <expiry>

@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS genderservice;
-DROP USER IF EXISTS `gender_service`@`%`;
-CREATE DATABASE IF NOT EXISTS genderservice CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER IF NOT EXISTS `gender_service`@`%` IDENTIFIED WITH mysql_native_password BY 'password';
+DROP DATABASE IF EXISTS diseaseService;
+DROP USER IF EXISTS `disease_service`@`%`;
+CREATE DATABASE IF NOT EXISTS diseaseService CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS `disease_service`@`%` IDENTIFIED WITH mysql_native_password BY 'password';
 GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, EXECUTE, CREATE VIEW, SHOW VIEW,
-CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER ON `genderservice`.* TO `gender_service`@`%`;
+CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER ON `diseaseService`.* TO `disease_service`@`%`;
 FLUSH PRIVILEGES;
 

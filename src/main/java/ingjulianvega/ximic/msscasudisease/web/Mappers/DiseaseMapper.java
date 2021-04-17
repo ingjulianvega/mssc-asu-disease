@@ -1,8 +1,8 @@
 package ingjulianvega.ximic.msscasudisease.web.Mappers;
 
 
-import ingjulianvega.ximic.msscasugender.domain.GenderEntity;
-import ingjulianvega.ximic.msscasugender.web.model.GenderDto;
+import ingjulianvega.ximic.msscasudisease.domain.DiseaseEntity;
+import ingjulianvega.ximic.msscasudisease.web.model.DiseaseDto;
 import org.mapstruct.Mapper;
 
 import java.util.ArrayList;
@@ -10,9 +10,9 @@ import java.util.List;
 
 @Mapper(uses = DateMapper.class)
 public interface DiseaseMapper {
-    GenderDto genderEntityToGenderDto(GenderEntity genderEntity);
+    DiseaseDto diseaseEntityToDiseaseDto(DiseaseEntity diseaseEntity);
 
-    GenderEntity genderDtoToGenderEntity(GenderDto genderDto);
+    DiseaseEntity diseaseDtoToDiseaseEntity(DiseaseDto diseaseDto);
 
-    ArrayList<GenderDto> genderEntityListToGenderDtoList(List<GenderEntity> genderEntityList);
+    ArrayList<DiseaseDto> diseaseEntityListToDiseaseDtoList(List<DiseaseEntity> diseaseEntityList);
 }

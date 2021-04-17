@@ -14,7 +14,7 @@ import java.util.UUID;
 @Builder
 public class DiseaseDto implements Serializable {
 
-    static final long serialVersionUID = -1008692555246336322L;
+    static final long serialVersionUID = 8078307476392521382L;
 
     private UUID id;
     private String name;

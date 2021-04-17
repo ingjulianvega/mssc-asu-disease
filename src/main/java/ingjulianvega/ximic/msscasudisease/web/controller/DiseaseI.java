@@ -1,9 +1,10 @@
 package ingjulianvega.ximic.msscasudisease.web.controller;
 
-import ingjulianvega.ximic.msscasugender.web.model.ApiError;
-import ingjulianvega.ximic.msscasugender.web.model.Gender;
-import ingjulianvega.ximic.msscasugender.web.model.GenderDto;
-import ingjulianvega.ximic.msscasugender.web.model.GenderList;
+import ingjulianvega.ximic.msscasudisease.web.model.ApiError;
+import ingjulianvega.ximic.msscasudisease.web.model.Disease;
+import ingjulianvega.ximic.msscasudisease.web.model.DiseaseDto;
+import ingjulianvega.ximic.msscasudisease.web.model.DiseaseList;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -23,9 +24,9 @@ import java.util.UUID;
 
 public interface DiseaseI {
 
-    @Operation(summary = "Endpoint to get the list of genders", description = "Returns a list of gender", tags = {"gender"})
+    @Operation(summary = "Endpoint to get the list of diseases", description = "Returns a list of disease", tags = {"disease"})
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "The operation was successful.", content = @Content(schema = @Schema(implementation = GenderList.class))),
+            @ApiResponse(responseCode = "200", description = "The operation was successful.", content = @Content(schema = @Schema(implementation = DiseaseList.class))),
 
             @ApiResponse(responseCode = "400", description = "400 - business error", content = @Content(schema = @Schema(implementation = ApiError.class))),
 
@@ -33,11 +34,11 @@ public interface DiseaseI {
     @RequestMapping(value = "/",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    ResponseEntity<GenderList> get();
+    ResponseEntity<DiseaseList> get();
 
-    @Operation(summary = "Endpoint to get the information of a gender given the id", description = "Returns a gender", tags = {"gender"})
+    @Operation(summary = "Endpoint to get the information of a disease given the id", description = "Returns a disease", tags = {"disease"})
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "The operation was successful.", content = @Content(schema = @Schema(implementation = GenderDto.class))),
+            @ApiResponse(responseCode = "200", description = "The operation was successful.", content = @Content(schema = @Schema(implementation = DiseaseDto.class))),
 
             @ApiResponse(responseCode = "400", description = "400 - business error", content = @Content(schema = @Schema(implementation = ApiError.class))),
 
@@ -45,9 +46,9 @@ public interface DiseaseI {
     @RequestMapping(value = "/{id}",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    ResponseEntity<GenderDto> getById(@Parameter(in = ParameterIn.PATH, description = "The gender id", required = true, schema = @Schema()) @NotNull @PathVariable("id") UUID id);
+    ResponseEntity<DiseaseDto> getById(@Parameter(in = ParameterIn.PATH, description = "The disease id", required = true, schema = @Schema()) @NotNull @PathVariable("id") UUID id);
 
-    @Operation(summary = "Endpoint to create a gender", description = "Creates a new gender", tags = {"gender"})
+    @Operation(summary = "Endpoint to create a disease", description = "Creates a new disease", tags = {"disease"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "The operation was successful."),
 
@@ -58,9 +59,9 @@ public interface DiseaseI {
             produces = {"application/json"},
             consumes = {"application/json"},
             method = RequestMethod.POST)
-    ResponseEntity<Void> create(@Parameter(in = ParameterIn.DEFAULT, description = "Gender's attributes", required = true, schema = @Schema()) @NotNull @Valid @RequestBody Gender gender);
+    ResponseEntity<Void> create(@Parameter(in = ParameterIn.DEFAULT, description = "disease's attributes", required = true, schema = @Schema()) @NotNull @Valid @RequestBody Disease disease);
 
-    @Operation(summary = "Endpoint to update the information of a gender given the id", description = "Updates a gender", tags = {"gender"})
+    @Operation(summary = "Endpoint to update the information of a disease given the id", description = "Updates a disease", tags = {"disease"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "The operation was successful."),
 
@@ -71,11 +72,11 @@ public interface DiseaseI {
             produces = {"application/json"},
             consumes = {"application/json"},
             method = RequestMethod.PUT)
-    ResponseEntity<Void> updateById(@Parameter(in = ParameterIn.PATH, description = "The gender id", required = true, schema = @Schema()) @NotNull @PathVariable("id") UUID id,
-                                    @Parameter(in = ParameterIn.DEFAULT, description = "Gender's attributes", required = true, schema = @Schema()) @NotNull @Valid @RequestBody Gender body);
+    ResponseEntity<Void> updateById(@Parameter(in = ParameterIn.PATH, description = "The disease id", required = true, schema = @Schema()) @NotNull @PathVariable("id") UUID id,
+                                    @Parameter(in = ParameterIn.DEFAULT, description = "disease's attributes", required = true, schema = @Schema()) @NotNull @Valid @RequestBody Disease disease);
 
 
-    @Operation(summary = "Endpoint to delete a gender", description = "Deletes a gender", tags = {"gender"})
+    @Operation(summary = "Endpoint to delete a disease", description = "Deletes a disease", tags = {"disease"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "The operation was successful."),
 
@@ -85,6 +86,6 @@ public interface DiseaseI {
     @RequestMapping(value = "/{id}",
             produces = {"application/json"},
             method = RequestMethod.DELETE)
-    ResponseEntity<Void> deleteById(@Parameter(in = ParameterIn.PATH, description = "The gender id", required = true, schema = @Schema()) @NotNull @PathVariable("id") UUID id);
+    ResponseEntity<Void> deleteById(@Parameter(in = ParameterIn.PATH, description = "The disease id", required = true, schema = @Schema()) @NotNull @PathVariable("id") UUID id);
 
 }

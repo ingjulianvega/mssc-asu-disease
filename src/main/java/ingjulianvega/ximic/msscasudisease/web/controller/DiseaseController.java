@@ -1,9 +1,10 @@
 package ingjulianvega.ximic.msscasudisease.web.controller;
 
-import ingjulianvega.ximic.msscasugender.services.GenderService;
-import ingjulianvega.ximic.msscasugender.web.model.Gender;
-import ingjulianvega.ximic.msscasugender.web.model.GenderDto;
-import ingjulianvega.ximic.msscasugender.web.model.GenderList;
+
+import ingjulianvega.ximic.msscasudisease.services.DiseaseService;
+import ingjulianvega.ximic.msscasudisease.web.model.Disease;
+import ingjulianvega.ximic.msscasudisease.web.model.DiseaseDto;
+import ingjulianvega.ximic.msscasudisease.web.model.DiseaseList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,33 +18,33 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class DiseaseController implements DiseaseI {
 
-    private final GenderService genderService;
+    private final DiseaseService diseaseService;
 
     @Override
-    public ResponseEntity<GenderList> get() {
-        return new ResponseEntity<>(genderService.get(), HttpStatus.OK);
+    public ResponseEntity<DiseaseList> get() {
+        return new ResponseEntity<>(diseaseService.get(), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<GenderDto> getById(@NotNull UUID id) {
-        return new ResponseEntity<>(genderService.getById(id), HttpStatus.OK);
+    public ResponseEntity<DiseaseDto> getById(@NotNull UUID id) {
+        return new ResponseEntity<>(diseaseService.getById(id), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Void> create(@NotNull @Valid Gender gender) {
-        genderService.create(gender);
+    public ResponseEntity<Void> create(@NotNull @Valid Disease disease) {
+        diseaseService.create(disease);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<Void> updateById(@NotNull UUID id, @NotNull @Valid Gender gender) {
-        genderService.updateById(id, gender);
+    public ResponseEntity<Void> updateById(@NotNull UUID id, @NotNull @Valid Disease disease) {
+        diseaseService.updateById(id, disease);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Override
     public ResponseEntity<Void> deleteById(@NotNull UUID id) {
-        genderService.deleteById(id);
+        diseaseService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

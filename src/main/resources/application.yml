@@ -1,7 +1,7 @@
 #Application
 spring:
   application:
-    name: ssc-asu-gender
+    name: ssc-asu-disease
   h2:
     console:
       enabled: true
@@ -15,17 +15,17 @@ spring:
       config: classpath:ehcache.xml
 #General configuration
 server:
-  port: 8081
+  port: 8087
   servlet:
-    context-path: /asu/v1/gender
+    context-path: /asu/v1/disease
 #Logging
 #logging:
 #  level:
 #    root: DEBUG
 #Exceptions
-gender:
+disease:
   success: The operation was successful.
-  prefix: 'API-GN:'
+  prefix: 'API-DS:'
   error:
     general: There was an unexpected error. Please try again.
 

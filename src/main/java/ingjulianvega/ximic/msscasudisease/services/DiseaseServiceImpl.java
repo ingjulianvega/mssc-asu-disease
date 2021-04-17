@@ -1,13 +1,14 @@
 package ingjulianvega.ximic.msscasudisease.services;
 
-import ingjulianvega.ximic.msscasugender.configuration.ErrorCodeMessages;
-import ingjulianvega.ximic.msscasugender.domain.GenderEntity;
-import ingjulianvega.ximic.msscasugender.domain.repositories.GenderRepository;
-import ingjulianvega.ximic.msscasugender.exception.GenderException;
-import ingjulianvega.ximic.msscasugender.web.Mappers.GenderMapper;
-import ingjulianvega.ximic.msscasugender.web.model.Gender;
-import ingjulianvega.ximic.msscasugender.web.model.GenderDto;
-import ingjulianvega.ximic.msscasugender.web.model.GenderList;
+
+import ingjulianvega.ximic.msscasudisease.configuration.ErrorCodeMessages;
+import ingjulianvega.ximic.msscasudisease.domain.DiseaseEntity;
+import ingjulianvega.ximic.msscasudisease.domain.repositories.DiseaseRepository;
+import ingjulianvega.ximic.msscasudisease.exception.DiseaseException;
+import ingjulianvega.ximic.msscasudisease.web.Mappers.DiseaseMapper;
+import ingjulianvega.ximic.msscasudisease.web.model.Disease;
+import ingjulianvega.ximic.msscasudisease.web.model.DiseaseDto;
+import ingjulianvega.ximic.msscasudisease.web.model.DiseaseList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
@@ -20,51 +21,51 @@ import java.util.UUID;
 @Service
 public class DiseaseServiceImpl implements DiseaseService {
 
-    private final GenderRepository genderRepository;
-    private final GenderMapper genderMapper;
+    private final DiseaseRepository diseaseRepository;
+    private final DiseaseMapper diseaseMapper;
 
-    @Cacheable(cacheNames = "genderListCache")
+    @Cacheable(cacheNames = "diseaseListCache")
     @Override
-    public GenderList get() {
+    public DiseaseList get() {
         log.debug("get()...");
-        return GenderList
+        return DiseaseList
                 .builder()
-                .genderList(genderMapper.genderEntityListToGenderDtoList(genderRepository.findAll()))
+                .genderList(diseaseMapper.diseaseEntityListToDiseaseDtoList(diseaseRepository.findAll()))
                 .build();
     }
 
-    @Cacheable(cacheNames = "genderCache")
+    @Cacheable(cacheNames = "diseaseCache")
     @Override
-    public GenderDto getById(UUID id) {
+    public DiseaseDto getById(UUID id) {
         log.debug("getById()...");
-        return genderMapper.genderEntityToGenderDto(
-                genderRepository.findById(id).orElseThrow(() -> new GenderException(ErrorCodeMessages.MARITAL_STATUS_NOT_FOUND, "")));
+        return diseaseMapper.diseaseEntityToDiseaseDto(
+                diseaseRepository.findById(id).orElseThrow(() -> new DiseaseException(ErrorCodeMessages.DISEASE_NOT_FOUND, "")));
     }
 
     @Override
-    public void create(Gender gender) {
+    public void create(Disease disease) {
         log.debug("create()...");
-        genderMapper.genderEntityToGenderDto(
-                genderRepository.save(
-                        genderMapper.genderDtoToGenderEntity(
-                                GenderDto
+        diseaseMapper.diseaseEntityToDiseaseDto(
+                diseaseRepository.save(
+                        diseaseMapper.diseaseDtoToDiseaseEntity(
+                                DiseaseDto
                                         .builder()
-                                        .name(gender.getName()).
+                                        .name(disease.getName()).
                                         build())));
     }
 
     @Override
-    public void updateById(UUID id, Gender gender) {
+    public void updateById(UUID id, Disease disease) {
         log.debug("updateById...");
-        GenderEntity genderEntity = genderRepository.findById(id).orElseThrow(() -> new GenderException(ErrorCodeMessages.MARITAL_STATUS_NOT_FOUND, ""));
-        genderEntity.setName(gender.getName());
+        DiseaseEntity genderEntity = diseaseRepository.findById(id).orElseThrow(() -> new DiseaseException(ErrorCodeMessages.DISEASE_NOT_FOUND, ""));
+        genderEntity.setName(disease.getName());
 
-        genderRepository.save(genderEntity);
+        diseaseRepository.save(genderEntity);
     }
 
     @Override
     public void deleteById(UUID id) {
         log.debug("deleteById...");
-        genderRepository.deleteById(id);
+        diseaseRepository.deleteById(id);
     }
 }
