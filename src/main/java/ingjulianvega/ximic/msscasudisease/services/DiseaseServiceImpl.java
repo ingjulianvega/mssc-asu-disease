@@ -30,7 +30,7 @@ public class DiseaseServiceImpl implements DiseaseService {
         log.debug("get()...");
         return DiseaseList
                 .builder()
-                .genderList(diseaseMapper.diseaseEntityListToDiseaseDtoList(diseaseRepository.findAll()))
+                .genderList(diseaseMapper.diseaseEntityListToDiseaseDtoList(diseaseRepository.findAllByOrderByName()))
                 .build();
     }
 
