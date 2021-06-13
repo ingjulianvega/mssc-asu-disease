@@ -24,9 +24,9 @@ public class DiseaseServiceImpl implements DiseaseService {
     private final DiseaseRepository diseaseRepository;
     private final DiseaseMapper diseaseMapper;
 
-    @Cacheable(cacheNames = "diseaseListCache")
+    @Cacheable(cacheNames = "diseaseListCache", condition = "#usingCache == false")
     @Override
-    public DiseaseList get() {
+    public DiseaseList get(Boolean usingCache) {
         log.debug("get()...");
         return DiseaseList
                 .builder()

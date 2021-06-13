@@ -21,8 +21,8 @@ public class DiseaseController implements DiseaseI {
     private final DiseaseService diseaseService;
 
     @Override
-    public ResponseEntity<DiseaseList> get() {
-        return new ResponseEntity<>(diseaseService.get(), HttpStatus.OK);
+    public ResponseEntity<DiseaseList> get(Boolean usingCache) {
+        return new ResponseEntity<>(diseaseService.get(usingCache), HttpStatus.OK);
     }
 
     @Override

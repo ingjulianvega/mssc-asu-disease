@@ -34,7 +34,7 @@ public interface DiseaseI {
     @RequestMapping(value = "/",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    ResponseEntity<DiseaseList> get();
+    ResponseEntity<DiseaseList> get(@Parameter(in = ParameterIn.QUERY, description = "The using of cache", required = true, schema = @Schema()) Boolean usingCache);
 
     @Operation(summary = "Endpoint to get the information of a disease given the id", description = "Returns a disease", tags = {"disease"})
     @ApiResponses(value = {
