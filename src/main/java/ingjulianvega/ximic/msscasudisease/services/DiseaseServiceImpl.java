@@ -12,6 +12,7 @@ import ingjulianvega.ximic.msscasudisease.web.model.DiseaseList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -39,7 +40,14 @@ public class DiseaseServiceImpl implements DiseaseService {
     public DiseaseDto getById(UUID id) {
         log.debug("getById()...");
         return diseaseMapper.diseaseEntityToDiseaseDto(
-                diseaseRepository.findById(id).orElseThrow(() -> new DiseaseException(ErrorCodeMessages.DISEASE_NOT_FOUND, "")));
+                diseaseRepository.findById(id).orElseThrow(() -> DiseaseException
+                        .builder()
+                        .httpStatus(HttpStatus.BAD_REQUEST)
+                        .apiCode(ErrorCodeMessages.DISEASE_NOT_FOUND_API_CODE)
+                        .error(ErrorCodeMessages.DISEASE_NOT_FOUND_ERROR)
+                        .message(ErrorCodeMessages.DISEASE_NOT_FOUND_MESSAGE)
+                        .solution(ErrorCodeMessages.DISEASE_NOT_FOUND_SOLUTION)
+                        .build()));
     }
 
     @Override
@@ -57,7 +65,14 @@ public class DiseaseServiceImpl implements DiseaseService {
     @Override
     public void updateById(UUID id, Disease disease) {
         log.debug("updateById...");
-        DiseaseEntity genderEntity = diseaseRepository.findById(id).orElseThrow(() -> new DiseaseException(ErrorCodeMessages.DISEASE_NOT_FOUND, ""));
+        DiseaseEntity genderEntity = diseaseRepository.findById(id).orElseThrow(() -> DiseaseException
+                .builder()
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .apiCode(ErrorCodeMessages.DISEASE_NOT_FOUND_API_CODE)
+                .error(ErrorCodeMessages.DISEASE_NOT_FOUND_ERROR)
+                .message(ErrorCodeMessages.DISEASE_NOT_FOUND_MESSAGE)
+                .solution(ErrorCodeMessages.DISEASE_NOT_FOUND_SOLUTION)
+                .build());
         genderEntity.setName(disease.getName());
 
         diseaseRepository.save(genderEntity);
