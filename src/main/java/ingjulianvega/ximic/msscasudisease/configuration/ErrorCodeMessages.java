@@ -6,7 +6,7 @@ import lombok.experimental.UtilityClass;
 public class ErrorCodeMessages {
 
     public static final String DISEASE_NOT_FOUND_API_CODE = "401";
-    public static final String DISEASE_NOT_FOUND_ERROR = "BODY_PART_NOT_FOUND";
+    public static final String DISEASE_NOT_FOUND_ERROR = "DISEASE_NOT_FOUND";
     public static final String DISEASE_NOT_FOUND_MESSAGE = "No se encontró la enfermedad";
     public static final String DISEASE_NOT_FOUND_SOLUTION = "Verifique los datos";
 
